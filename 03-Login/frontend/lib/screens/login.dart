@@ -17,6 +17,22 @@ class _LoginScreenState extends State<LoginScreen> {
   String password = '';
   final _formKey = GlobalKey<FormState>();
 
+  @override
+  void initState() {
+    super.initState();
+    _validateSession();
+  }
+
+  void _validateSession() async {
+    // Get the token from shared preferences
+    String? token = await Utils().getFromSharedPreferences('token', 'string');
+
+    // If the token is not null, navigate to the home screen
+    if (token != null) {
+      Navigator.pushNamed(context, '/home');
+    }
+  }
+
   void _updateState(field, value) {
     setState(() {
       switch (field) {
@@ -37,15 +53,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
       // Get token from the response and save to shared preferences
       String token = response['accessToken'];
-      final saved =
+      final wasTokenSaved =
           await Utils().saveToSharedPreferences('token', token, 'string');
 
-      // Get the token from shared preferences
-      if (saved) {
-        final String? token =
-            await Utils().getFromSharedPreferences('token', 'string');
-
-        print('Token from shared preferences: $token');
+      // Navigate to the home screen if the token was successfully saved
+      if (wasTokenSaved) {
+        Navigator.pushNamed(context, '/home');
       }
     }
   }
