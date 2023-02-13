@@ -35,4 +35,9 @@ class Utils {
     // Return the value
     return types[type](key);
   }
+
+  Future<bool> removeFromSharedPreferences(key) async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.remove(key);
+  }
 }
