@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:session/screens/home_screen.dart';
-import 'package:session/screens/login.dart';
+import 'package:a3_login/screens/home_screen.dart';
+import 'package:a3_login/screens/login.dart';
 
 void main() {
   runApp(MaterialApp(

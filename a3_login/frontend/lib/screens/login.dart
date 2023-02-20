@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:session/components/form_input.dart';
-import 'package:session/services/session.services.dart';
-import 'package:session/utils/utils.dart';
+import 'package:a3_login/components/form_input.dart';
+import 'package:a3_login/services/session.services.dart';
+import 'package:a3_login/utils/utils.dart';
 
 // Globarl session service
 var _sessionService = SessionServices();
