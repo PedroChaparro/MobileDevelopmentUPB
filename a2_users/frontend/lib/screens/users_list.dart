@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:users/components/user_row.dart';
-import 'package:users/data/users_storage.dart';
+import 'package:a2_users/components/user_row.dart';
+import 'package:a2_users/data/users_storage.dart';
 
 class UsersList extends StatefulWidget {
   const UsersList({super.key});

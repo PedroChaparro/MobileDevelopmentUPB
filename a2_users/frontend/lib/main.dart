@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:users/screens/users_list.dart';
+import 'package:a2_users/screens/users_list.dart';
 
 void main() {
   runApp(const MyApp());

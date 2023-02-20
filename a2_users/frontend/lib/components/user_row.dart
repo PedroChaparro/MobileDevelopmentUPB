@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:users/components/user_text.dart';
+import 'package:a2_users/components/user_text.dart';
 
 class UserRow extends StatelessWidget {
   final String userImage;
