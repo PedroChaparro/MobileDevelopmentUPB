@@ -1,4 +1,4 @@
-import 'package:calculator/components/calculator_button.dart';
+import 'package:a1_calculator/components/calculator_button.dart';
 import 'package:flutter/material.dart';
 
 class CalculatorRow extends StatelessWidget {

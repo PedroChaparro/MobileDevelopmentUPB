@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:calculator/components/calculator_button.dart';
-import 'package:calculator/components/calculator_row.dart';
+import 'package:a1_calculator/components/calculator_button.dart';
+import 'package:a1_calculator/components/calculator_row.dart';
 import 'package:flutter/material.dart';
 
 class Calculator extends StatefulWidget {
