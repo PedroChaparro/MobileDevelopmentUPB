@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import { users } from "./storage/users.js";
-import { createAccessToken } from "./lib/session.js";
+import { createAccessToken, checkAccessToken } from "./lib/session.js";
 dotenv.config();
 
 const app = express();
@@ -40,6 +40,40 @@ app.post("/login", (req, res) => {
   const token = createAccessToken(user);
   return res.json({ username: user.username, accessToken: token });
 });
+
+// Route to validte if the given token is valid
+// Requires the jwt as Authorization header
+app.get("/token/validate", (req, res) => {
+  const authHeader = req.headers["authorization"];
+
+  if (!authHeader) {
+    return res.status(401).send({
+      "message": "Authorization header must be provided"
+    })
+  }
+
+  // Check if the token is valid
+  const [err, success] = checkAccessToken(authHeader);
+
+  if(!success){
+    const { name } = err;
+
+    const errors = {
+      "TokenExpiredError": "Token is expired.",
+      "JsonWebTokenError": "Token is not valid."
+    }
+    
+    return res.status(403).json({
+      error: true, 
+      message: errors[name] || "Unexpected error when validating the token"
+    })
+  }
+
+  return res.send({
+    "error": false, 
+    "message": "Token is valid"
+  })
+})
 
 // Serve
 app.listen(port, () => {
