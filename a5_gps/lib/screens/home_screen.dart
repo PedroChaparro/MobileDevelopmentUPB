@@ -1,4 +1,5 @@
 import 'package:a5_gps/lib/geolocator.dart';
+import 'package:a5_gps/lib/url_launcher.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,6 +25,11 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+// Function to launch the google maps link when the button is pressed
+  Future<void> launchGoogleMaps() async {
+    UrlLauncherLib.launchGoogleMaps(_latitude, _longitude);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -37,7 +43,17 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('GPS app'),
       ),
       body: Center(
-        child: Text(_screenMessage),
+        child: Column(
+          children: [
+            // Show the "response" message
+            Text(_screenMessage),
+            // Show the button only if the latitude is not the default value
+            if (_latitude != 0.0)
+              ElevatedButton(
+                  onPressed: launchGoogleMaps,
+                  child: const Text("Launch google maps"))
+          ],
+        ),
       ),
     );
   }
